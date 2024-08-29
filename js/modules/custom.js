@@ -53,14 +53,22 @@ export default function () {
     const value = e.target.value;
     const numbers = value.split('');
 
-    if (value.length < cardNumber.children.length)
-      cardNumber.children[value.length].classList.remove('filed');
-
     if (value.length > 0) {
       cardNumber.children[value.length - 1].innerHTML = numbers.at(
         value.length - 1
       );
       cardNumber.children[value.length - 1].classList.add('filed');
+
+      [...cardNumber.children].forEach((span, i) => {
+        if (value[i] !== span.textContent && i < value.length) {
+          span.textContent = value[i];
+        }
+        if (i >= value.length) span.classList.remove('filed');
+      });
+    }
+
+    if (value.length < cardNumber.children.length) {
+      cardNumber.children[value.length].classList.remove('filed');
     }
     if (!value) {
       [...cardNumber.children].forEach((span) =>
