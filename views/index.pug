@@ -5,8 +5,10 @@ block content
 
         .card
             .card__inner
+
                 .card__background 
                     +addPicture('background.jpg', '', '')
+
                 .card__front 
                     +addPicture('chip.png', 'card__chip', '')
                     +addPicture('mastercard.png', 'card__logo', '')
@@ -29,25 +31,24 @@ block content
                             span #
                             span #
                             span #
-
-
                     .card__footer 
                         .card__field 
                             p.label Card Holder
-                            p.value(class="js-card-holder") AD SOYAD
+                            p.value.js-card-holder AD SOYAD
                         .card__field 
                             p.label Expires
-                            p.value 
+                            p.value
                                 span MM
                                 span /
                                 span YY
 
-
-                    
                 .card__back
                     .card__cvv 
                         p.label CVV
-                        p.value 123
+                        p.value 
+                    +addPicture('mastercard.png', 'card__logo card__logo--back', '')
+                    +addPicture('visa.png', 'card__logo card__logo--back active', '')
+                    
 
 
         form.card-form
@@ -56,17 +57,17 @@ block content
                 input.card-form__input(type="text" name="number" id="number" required maxlength="16")
             .card-form__row
                 label.card-form__label(for="holder") Card Name 
-                input.card-form__input(type="text" name="holder" id="holder" required class="js-form-holder")
+                input.card-form__input.js-form-holder(type="text" name="holder" id="holder" required maxlength="25")
             .card-form__group 
                 .card-form__row
                     label.card-form__label(for="exp-date") Expiration Date
                     .card-form__exp-date-c
-                        select.card-form__input(name="month" id="exp-date")
+                        select.card-form__input(name="month" id="exp-date" required)
                           option(value="") Month
                           - var n = 1
                           while (n <=12)
                             option(value=n)= String(n++).padStart(2, '0') 
-                        select.card-form__input(name="year")
+                        select.card-form__input(name="year" required)
                           option(value="") Year
                           - var n = 2019
                           while (n <= 2030)

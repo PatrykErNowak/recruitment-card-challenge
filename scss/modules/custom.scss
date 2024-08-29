@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+// Breakpoints
+$mobile-sm: 640px;
+$mobile-md: 768px;
+$laptop: 1024px;
+
+// Border radius
+$radius-sm: 5px;
+$radius-md: 13px;
+
 *,
 *::before,
 *::after {
@@ -26,6 +35,18 @@ body {
 
   * {
     outline: none;
+  }
+
+  // For custom arrow
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
   }
 }
 
@@ -54,7 +75,8 @@ body {
 
   &__background {
     position: relative;
-    border-radius: 10px;
+    border-radius: $radius-md;
+    box-shadow: 0 10px 50px 0 rgba(19, 44, 88, 0.466);
     overflow: hidden;
 
     img {
@@ -104,29 +126,39 @@ body {
   }
 
   &__logo {
+    display: none;
     position: absolute;
     top: 0;
     right: 0;
     padding: 5%;
     width: 30%;
-    opacity: 0;
+    opacity: 1;
+
+    &--back {
+      top: 60%;
+      opacity: 0.7;
+    }
 
     &.active {
-      opacity: 1;
+      display: block;
     }
   }
 
   &__number {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 0;
     right: 0;
-    padding: 5%;
+    margin: 0 5%;
+    width: max-content;
     font-size: 1.7em;
     font-size: clamp(1.6rem, 0.9rem + 2.7vw, 3rem);
 
     span:nth-child(4n) {
       padding-right: 1em;
+    }
+    span:last-child {
+      padding-right: 0;
     }
   }
 
@@ -136,8 +168,9 @@ body {
     left: 0;
     right: 0;
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 8fr 2fr;
     gap: 2rem;
+    overflow: hidden;
     padding: 5%;
   }
 
@@ -166,6 +199,7 @@ body {
 
     .label {
       padding-right: 3%;
+      font-size: 0.8em;
       margin-bottom: 0.5rem;
     }
 
@@ -177,7 +211,21 @@ body {
       padding-right: 3%;
       color: #111;
       background-color: #fff;
-      border-radius: 5px;
+      border-radius: $radius-sm;
+    }
+  }
+
+  .highlight {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% + 1.5rem);
+      height: calc(100% + 1rem);
+      border-radius: $radius-sm;
+      border: 1px solid #ddd;
     }
   }
 }
@@ -186,11 +234,19 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 30% 2rem 2rem;
+  padding: 30% 1rem 1rem;
   font-size: clamp(1.3rem, 0.6rem + 2vw, 1.6rem);
   font-family: 'Roboto', sans-serif;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: $radius-md;
+  box-shadow: 0 25px 50px rgba(83, 107, 138, 0.4);
+
+  @media screen and (min-width: $mobile-sm) {
+    padding: 30% 2rem 2rem;
+  }
+  @media screen and (min-width: $laptop) {
+    padding: 30% 3rem 3rem;
+  }
 
   &__row {
     display: flex;
@@ -202,12 +258,13 @@ body {
     margin-bottom: 0.5rem;
     font-size: 0.8em;
     font-weight: 500;
+    opacity: 0.9;
   }
 
   &__input {
-    padding: 1rem 1.5rem;
+    padding: 0.9em 1.5rem;
     width: 100%;
-    border-radius: 5px;
+    border-radius: $radius-sm;
     border: 1px solid #ddd;
     transition: border 300ms;
 
@@ -221,30 +278,31 @@ body {
     display: grid;
     grid-template-columns: 2fr 1fr;
     align-items: end;
-    gap: 2rem;
+    gap: 2em;
   }
 
   &__exp-date-c {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.2em;
   }
 
   &__btn {
-    margin-top: 1rem;
-    padding: 1rem 1.5rem;
+    margin-top: 1em;
+    padding: 0.8em 1em;
     color: #fff;
     font-size: 1.1em;
     letter-spacing: 1px;
     background-color: #0055d4;
     border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: $radius-sm;
+    box-shadow: 3px 10px 20px rgba(30, 97, 211, 0.3);
     cursor: pointer;
     transition: opacity 300ms;
 
     &:hover,
     &:focus {
-      opacity: 0.8;
+      opacity: 0.92;
     }
   }
 }
