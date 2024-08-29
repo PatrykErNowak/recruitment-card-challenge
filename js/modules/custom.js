@@ -62,6 +62,11 @@ export default function () {
       );
       cardNumber.children[value.length - 1].classList.add('filed');
     }
+    if (!value) {
+      [...cardNumber.children].forEach((span) =>
+        span.classList.remove('filed')
+      );
+    }
   }
 
   function makeAnimatioHolder() {
