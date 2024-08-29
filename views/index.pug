@@ -11,8 +11,8 @@ block content
 
                 .card__front 
                     +addPicture('chip.png', 'card__chip', '')
-                    +addPicture('mastercard.png', 'card__logo', '')
-                    +addPicture('visa.png', 'card__logo active', '')
+                    +addPicture('mastercard.png', 'card__logo js-mastercard', '')
+                    +addPicture('visa.png', 'card__logo active js-visa', '')
                     .card__number 
                         p.js-card-number 
                             span #
@@ -46,8 +46,8 @@ block content
                     .card__cvv 
                         p.label CVV
                         p.value.js-card-cvv 
-                    +addPicture('mastercard.png', 'card__logo card__logo--back', '')
-                    +addPicture('visa.png', 'card__logo card__logo--back active', '')
+                    +addPicture('mastercard.png', 'card__logo card__logo--back js-mastercard', '')
+                    +addPicture('visa.png', 'card__logo card__logo--back active js-visa', '')
                     
 
 

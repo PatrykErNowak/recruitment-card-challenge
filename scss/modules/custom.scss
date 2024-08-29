@@ -132,8 +132,7 @@ body {
     top: 0;
     right: 0;
     padding: 5%;
-    width: 30%;
-    opacity: 1;
+    height: 32%;
 
     &--back {
       top: 60%;
@@ -142,6 +141,7 @@ body {
 
     &.active {
       display: block;
+      animation: fadeUp 500ms ease;
     }
   }
 
@@ -187,6 +187,9 @@ body {
     .value {
       text-transform: uppercase;
       font-weight: 500;
+      span {
+        display: inline-block;
+      }
     }
   }
 
@@ -217,7 +220,7 @@ body {
   }
 
   .highlight {
-    &::before {
+    &::after {
       content: '';
       position: absolute;
       top: 50%;
@@ -305,5 +308,23 @@ body {
     &:focus {
       opacity: 0.92;
     }
+  }
+}
+
+// --------------------------------------------------------------
+// Animations
+
+.fadeUp {
+  animation: fadeUp 300ms ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

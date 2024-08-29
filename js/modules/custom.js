@@ -14,6 +14,10 @@ export default function () {
   const formYear = document.querySelector('.js-form-year');
   const formCVV = document.querySelector('.js-form-cvv');
 
+  // Logos
+  const mastercardLogos = document.querySelectorAll('.js-mastercard');
+  const visaLogos = document.querySelectorAll('.js-visa');
+
   // ---------------------------------------------------------------
   // Functions
 
@@ -32,6 +36,19 @@ export default function () {
     });
   }
 
+  function changeCardTypeLogo(e) {
+    const value = e.target.value;
+    const isMastercard = /^5[1-5]/.test(value);
+
+    if (isMastercard) {
+      mastercardLogos.forEach((logo) => logo.classList.add('active'));
+      visaLogos.forEach((logo) => logo.classList.remove('active'));
+    } else {
+      mastercardLogos.forEach((logo) => logo.classList.remove('active'));
+      visaLogos.forEach((logo) => logo.classList.add('active'));
+    }
+  }
+
   // -------------------------------------------------------------------
   // Event Listeners
 
@@ -41,21 +58,31 @@ export default function () {
   toggleClassOnFocusBlur(formYear, cardYear, 'highlight');
   toggleClassOnFocusBlur(formCVV, card, 'flip');
 
-  // Fill
-  // formNumber.addEventListener('input', (e) => {});
+  // Fill Card
+  formNumber.addEventListener('input', (e) => {
+    changeCardTypeLogo(e);
+  });
 
-  // formHolder.addEventListener('input', (e) => {
-  //   const value = e.target.value;
+  formHolder.addEventListener('input', (e) => {
+    const value = e.target.value;
 
-  //   if (!value) cardHolder.textContent = 'AD SOYAD';
-  //   if (value) cardHolder.textContent = value;
-  // });
+    if (!value) cardHolder.textContent = 'AD SOYAD';
+    if (value) cardHolder.textContent = value;
+  });
 
-  // formCVV.addEventListener('input', (e) => {
-  //   const value = e.target.value;
+  formMonth.addEventListener('change', (e) => {
+    const value = String(e.target.value).padStart(2, '0');
+    cardMonth.innerHTML = `<span class="fadeUp">${value}</span>`;
+  });
+  formYear.addEventListener('change', (e) => {
+    const value = String(e.target.value).substring(2);
+    cardYear.innerHTML = `<span class="fadeUp">${value}</span>`;
+  });
 
-  //   cardCVV.textContent = value;
-  // });
+  formCVV.addEventListener(
+    'input',
+    (e) => (cardCVV.textContent = e.target.value)
+  );
 
   // Form Validation
   formNumber.addEventListener('beforeinput', (e) => {
