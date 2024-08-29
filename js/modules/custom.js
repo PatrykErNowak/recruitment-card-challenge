@@ -5,6 +5,7 @@ export default function () {
   const cardHolder = document.querySelector('.js-card-holder');
   const cardMonth = document.querySelector('.js-card-month');
   const cardYear = document.querySelector('.js-card-year');
+  const cardCVV = document.querySelector('.js-card-cvv');
 
   // Form Elements
   const formNumber = document.querySelector('.js-form-number');
@@ -40,10 +41,30 @@ export default function () {
   toggleClassOnFocusBlur(formYear, cardYear, 'highlight');
   toggleClassOnFocusBlur(formCVV, card, 'flip');
 
+  // Fill
+  // formNumber.addEventListener('input', (e) => {});
+
   // formHolder.addEventListener('input', (e) => {
   //   const value = e.target.value;
 
   //   if (!value) cardHolder.textContent = 'AD SOYAD';
   //   if (value) cardHolder.textContent = value;
   // });
+
+  // formCVV.addEventListener('input', (e) => {
+  //   const value = e.target.value;
+
+  //   cardCVV.textContent = value;
+  // });
+
+  // Form Validation
+  formNumber.addEventListener('beforeinput', (e) => {
+    if (e.data !== null && !/[0-9]/.test(e.data)) e.preventDefault();
+  });
+  formHolder.addEventListener('beforeinput', (e) => {
+    if (e.data !== null && !/[a-zA-Z\s]/.test(e.data)) e.preventDefault();
+  });
+  formCVV.addEventListener('beforeinput', (e) => {
+    if (e.data !== null && !/[0-9]/.test(e.data)) e.preventDefault();
+  });
 }
