@@ -251,6 +251,7 @@ body {
       height: calc(100% + 1rem);
       border-radius: $radius-sm;
       border: 1px solid #ddd;
+      animation: highlighterAnime 300ms ease 100ms backwards;
     }
   }
 }
@@ -361,5 +362,17 @@ body {
   to {
     opacity: 1;
     transform: rotate(0deg) translateX(0px);
+  }
+}
+
+// Animation only for highlighter class
+@keyframes highlighterAnime {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }
