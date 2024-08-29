@@ -49,6 +49,32 @@ export default function () {
     }
   }
 
+  function makeAnimatioHolder() {
+    let holderName = '';
+
+    return function (value) {
+      if (value > holderName) {
+        cardHolder.textContent = value.substring(0, value.length - 1);
+        cardHolder.insertAdjacentHTML(
+          'beforeend',
+          `<span class="rotateLeft">${value[value.length - 1] || ''}</span>`
+        );
+        holderName = value;
+      }
+      if (value < holderName) {
+        cardHolder.textContent = value;
+
+        holderName = value;
+      }
+
+      if (!value) {
+        holderName = 'AD SOYAD';
+        cardHolder.textContent = holderName;
+      }
+    };
+  }
+  const animateHolder = makeAnimatioHolder();
+
   // -------------------------------------------------------------------
   // Event Listeners
 
@@ -65,15 +91,14 @@ export default function () {
 
   formHolder.addEventListener('input', (e) => {
     const value = e.target.value;
-
-    if (!value) cardHolder.textContent = 'AD SOYAD';
-    if (value) cardHolder.textContent = value;
+    animateHolder(value);
   });
 
   formMonth.addEventListener('change', (e) => {
     const value = String(e.target.value).padStart(2, '0');
     cardMonth.innerHTML = `<span class="fadeUp">${value}</span>`;
   });
+
   formYear.addEventListener('change', (e) => {
     const value = String(e.target.value).substring(2);
     cardYear.innerHTML = `<span class="fadeUp">${value}</span>`;

@@ -317,6 +317,9 @@ body {
 .fadeUp {
   animation: fadeUp 300ms ease;
 }
+.rotateLeft {
+  animation: rotateLeft 400ms ease;
+}
 
 @keyframes fadeUp {
   from {
@@ -326,5 +329,16 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes rotateLeft {
+  from {
+    opacity: 0;
+    transform: rotate(20deg) translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) translateX(0px);
   }
 }
