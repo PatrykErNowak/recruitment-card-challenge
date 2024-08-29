@@ -49,6 +49,21 @@ export default function () {
     }
   }
 
+  function displayNumbers(e) {
+    const value = e.target.value;
+    const numbers = value.split('');
+
+    if (value.length < cardNumber.children.length)
+      cardNumber.children[value.length].classList.remove('filed');
+
+    if (value.length > 0) {
+      cardNumber.children[value.length - 1].innerHTML = numbers.at(
+        value.length - 1
+      );
+      cardNumber.children[value.length - 1].classList.add('filed');
+    }
+  }
+
   function makeAnimatioHolder() {
     let holderName = '';
 
@@ -87,6 +102,7 @@ export default function () {
   // Fill Card
   formNumber.addEventListener('input', (e) => {
     changeCardTypeLogo(e);
+    displayNumbers(e);
   });
 
   formHolder.addEventListener('input', (e) => {

@@ -161,6 +161,27 @@ body {
     span:last-child {
       padding-right: 0;
     }
+    .value {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+
+      span {
+        position: relative;
+        transition: 0.5s;
+        transform: translateY(100%);
+
+        &::before {
+          content: '#';
+          position: absolute;
+          bottom: 100%;
+        }
+
+        &.filed {
+          transform: translateY(0);
+        }
+      }
+    }
   }
 
   &__footer {
