@@ -69,7 +69,8 @@ body {
     transition: transform 2s;
   }
 
-  &:hover &__inner {
+  &:hover &__inner,
+  &.flip &__inner {
     transform: rotateY(-180deg);
   }
 

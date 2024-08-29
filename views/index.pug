@@ -3,7 +3,7 @@ include defaults/mixins.pug
 block content
     .card-container
 
-        .card
+        .card.js-card
             .card__inner
 
                 .card__background 
@@ -14,7 +14,7 @@ block content
                     +addPicture('mastercard.png', 'card__logo', '')
                     +addPicture('visa.png', 'card__logo active', '')
                     .card__number 
-                        p 
+                        p.js-card-number 
                             span #
                             span #
                             span #
@@ -38,9 +38,9 @@ block content
                         .card__field 
                             p.label Expires
                             p.value
-                                span MM
+                                span.js-card-month MM
                                 span /
-                                span YY
+                                span.js-card-year YY
 
                 .card__back
                     .card__cvv 
@@ -54,7 +54,7 @@ block content
         form.card-form
             .card-form__row
                 label.card-form__label(for="number") Card Number 
-                input.card-form__input(type="text" name="number" id="number" required maxlength="16")
+                input.card-form__input.js-form-number(type="text" name="number" id="number" required maxlength="16")
             .card-form__row
                 label.card-form__label(for="holder") Card Name 
                 input.card-form__input.js-form-holder(type="text" name="holder" id="holder" required maxlength="25")
@@ -62,18 +62,18 @@ block content
                 .card-form__row
                     label.card-form__label(for="exp-date") Expiration Date
                     .card-form__exp-date-c
-                        select.card-form__input(name="month" id="exp-date" required)
-                          option(value="") Month
+                        select.card-form__input.js-form-month(name="month" id="exp-date" required)
+                          option(value="" selected disabled) Month
                           - var n = 1
                           while (n <=12)
                             option(value=n)= String(n++).padStart(2, '0') 
-                        select.card-form__input(name="year" required)
-                          option(value="") Year
+                        select.card-form__input.js-form-year(name="year" required)
+                          option(value="" selected disabled) Year
                           - var n = 2019
                           while (n <= 2030)
                             option(value=n)= String(n++)
                 .card-form__row 
                     label.card-form__label(for="cvv") CVV
-                    input.card-form__input(type="text" name="=cvv" id="=cvv" maxlength="4" required)
+                    input.card-form__input.js-form-cvv(type="text" name="=cvv" id="=cvv" maxlength="4" required)
 
             button.card-form__btn(type="submit") Submit
