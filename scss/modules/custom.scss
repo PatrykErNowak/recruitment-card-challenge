@@ -81,6 +81,7 @@ body {
     overflow: hidden;
 
     img {
+      display: block;
       width: 100%;
     }
 
@@ -105,8 +106,12 @@ body {
     backface-visibility: hidden;
   }
 
+  &__front {
+    transform: rotateY(0deg);
+  }
+
   &__back {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
     background: linear-gradient(
       180deg,
       transparent 15%,
